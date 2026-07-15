@@ -12,6 +12,8 @@ export default function ForgotPassword({
 }) {
   const navigator = useNavigate();
   const [otp, setOtp] = useState(Array(5).fill(" "));
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
 
   const handleChange = (element, index) => {
     const newOtp = [...otp];
@@ -31,13 +33,70 @@ export default function ForgotPassword({
     }
   };
 
-  const handleSendOtp = () => {
-    navigator("/OTPscreen");
-  };
+  const handleSendOtp = async(e) => {
+    e.preventDefault()
 
-  const handleSubmitOtp = () => {
-    navigator("/ResetPassword");
-  };
+    if(!email) {
+      setMessage("Please enter a valid Email Address")
+    }
+
+    try{
+      const response = await fetch("http://localhost:5000/otp-Generate/send-otp", {
+
+        method:'POST',
+        headers: {
+          "Content-Type":"application/json",
+        },
+        body:JSON.stringify({email}),
+      })
+      
+      const data = await response.json()
+       
+      if(data.success){
+        setMessage("OTP send Successfully")
+      }
+      else{
+        setMessage(data.message || "Failed to Send OTP")
+      }
+    }
+    catch(error){
+       setMessage("An Error occured while sending OTP")
+    }
+
+  }
+
+  const handleSubmitOtp = async(e) =>{
+    e.preventDefault()
+
+    const enteredOTP = otp.join("")
+    if(enteredOTP.lenght < 5){
+      setMessage("Please enter All otp Digits")
+      return;
+    }
+
+    try{
+      
+      const response = await fetch("http://localhost:5000/otp-verify/verify-otp",{
+        method:"POST",
+        header:{
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email, otp: enteredOTP})
+      })
+
+      const data = await response.json()
+      if(data.success){
+        setMessage("OTP verified Successfully")
+      }
+      else{
+        setMessage(data.message || "Failed to verify OTP")
+      }
+    }
+    catch(err){
+      setMessage("Error Occured While Verifying OTP")
+    }
+
+  }
 
   const handleBackButton = () => {
     navigator(-1);
@@ -102,6 +161,8 @@ export default function ForgotPassword({
                 <input
                   type="email"
                   name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="border border-gray-300 px-2 p-3 sm:max-w-[30rem] w-full rounded-md lg:rounded-lg text-xs lg:text-[0.85rem]"
                   placeholder="Enter Email"
                   required
@@ -114,6 +175,7 @@ export default function ForgotPassword({
                 />
               </div>
             )}
+             {message && <p className="text-red-500">{message}</p>}
           </div>
         </div>
       </div>

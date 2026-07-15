@@ -38,7 +38,7 @@ export default function ProfileSetting() {
                 htmlFor="FirstName"
                 className="text-[0.8rem] font-medium text-gray-600"
               >
-                First Name:
+                Name:
               </label>
               <br />
               <input
@@ -51,7 +51,7 @@ export default function ProfileSetting() {
                 htmlFor="LastName"
                 className="text-[0.8rem] font-medium text-gray-600"
               >
-                Last Name:
+                CNIC:
               </label>
               <br />
               <input
@@ -109,7 +109,7 @@ export default function ProfileSetting() {
                 htmlFor="PhoneNo"
                 className="text-[0.8rem] font-medium text-gray-600"
               >
-                Phone No:
+                Degree:
               </label>
               <br />
               <input

@@ -33,7 +33,7 @@ function App() {
         <Route path='/ForgotPassword' element={<ForgotPassword heading="Forgot Password" 
         description="Lost Your Password ? Enter Your email address to reset your password"
         image={Vector2}
-        buttonLabel="Send OTP"
+        buttonLabel="Send Link"
         />}/>
          <Route path='/OTPscreen' element={<OTPscreen heading="Enter OTP" 
         description="Check your email for the 6-digit OTP. Enter the code below to verify your identity.

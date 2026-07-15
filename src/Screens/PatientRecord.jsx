@@ -41,10 +41,10 @@ export default function PatientRecord() {
             <form className="w-full max-w-[15rem] lg:max-w-[20rem] flex">
               <input
                 type="search"
-                className="px-3 py-1.5 sm:py-2 text-sm text-gray-00 outline-none flex-1 rounded-l-md border border-gray-400"
-                placeholder="search..."
+                className="px-3 py-1.5 sm:py-2 text-sm text-gray-00 outline-none flex-1 rounded-l-md border border-gray-300"
+                placeholder="Search..."
               />
-              <div className="bg-blue-600 w-full max-w-[3rem] p-2 flex justify-center items-center rounded-r-md">
+              <div className="bg-blue-600 w-full max-w-[3rem] p-2 flex justify-center items-center rounded-r-md hover:bg-blue-500">
                 <IoSearch className="text-white text-[1.1rem] sm:text-[1.3rem]" />
               </div>
             </form>

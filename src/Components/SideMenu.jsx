@@ -28,6 +28,8 @@ export default function SideMenu({sideBar, toggleSideBar}) {
   }
 
   const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    sessionStorage.removeItem("authToken");
     navigate("/");
   };
 
@@ -79,7 +81,7 @@ export default function SideMenu({sideBar, toggleSideBar}) {
           
           <div className="space-y-5 text-center">
           <h1 className="text-[1.5rem] font-semibold">LogOut</h1>
-          <h3 className="text-sm">Are you sure you want to Logout ? </h3>
+          <h3 className="text-sm font-medium">Are you sure you want to Logout ? </h3>
           </div>
 
           <div className="flex gap-x-5 pt-5 justify-center">

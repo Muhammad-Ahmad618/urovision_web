@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
-export default function PasswordFied({ name, width, position, change }) {
+export default function PasswordFied({ name, width, position, change, value }) {
   const [visible, setVisibiliy] = useState(false);
 
   const toggleShowPassword = () => {
@@ -16,6 +16,7 @@ export default function PasswordFied({ name, width, position, change }) {
           name={name}
           className={`border border-gray-400 py-2.5 rounded-md w-full text-sm mt-2 px-2 ${width}`}
           onChange={change}
+          value={value}
         />
 
         <span className={`text-2xl absolute ${position} top-[17px] text-gray-300`}>
